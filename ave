@@ -1,0 +1,35 @@
+import numpy as np
+
+def openReadetxt(file_name):
+    data=[]
+
+    file=open(file_name,'r')
+    file_data=file.readlines()
+    for row in file_data:
+        tmp_list=row.split('prediction_focal')[1].split('label')[0].strip()
+        data.append(tmp_list)
+    print(len(data))
+    return data
+
+def sumList(data):
+    sum=0
+    for i in data:
+        print(type(i))
+        i = float(i)
+        sum=i+sum
+    return sum
+
+def getAve(data):
+
+    num=len(data)
+    sum=sumList(data)
+    ave=sum/num
+    return ave
+
+
+
+if __name__=="__main__":
+    file_name = "/home/flychen59/Downloads/DeepCalib-master/prediction/Regression/Single_net/kitti_image_test.txt"
+    data=openReadetxt(file_name)
+    result=getAve(data)
+    print(result)
